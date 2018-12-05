@@ -9,8 +9,8 @@ These problems illustrate concepts that previous problems have not emphasized:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Valerie Galluzzi, Mark Hays, Amanda Stouder, Aaron Wilkin,
-         their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues, and Yu Xin.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 import testing_helper
@@ -25,7 +25,7 @@ def main():
 
 
 ###############################################################################
-# TODO: 2.  READ the green doc-string for the:
+# DONE: 2.  READ the green doc-string for the:
 #   - is_prime
 #   - sum_of_digits
 # functions defined below.  You do NOT need to understand their
@@ -189,10 +189,14 @@ def problem0a(n):
            since (2 + 4 + 6) is 12, which is NOT odd.
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ###########################################################################
+    if sum_of_digits(n)%2==1:
+        return True
+    else:
+        return False
     # IMPORTANT:
     #    **  For full credit you must appropriately
     #    **  use (call) the   sum_of_digits   function
@@ -246,23 +250,29 @@ def run_test_problem0b():
 
 
 def problem0b(n):
-    """
-    What comes in:  An integer n >= 2.
-    What goes out:
-      -- Returns the number of integers from 2 to n, inclusive,
-         that are prime.
-    Side effects:   None.
-    Examples:
-      -- If n is 13, this function returns 6,
-           since there are 6 primes -- namely, 2, 3, 5, 7, 11, and 13 --
-           between 2 and 13.
-      -- If n is 2, this function returns 1,
-           since there is one prime (namely, 2) between 2 and 2.
-      -- If n is 200, the correct answer is 46,
-           since there are 46 primes between 2 and 200.
-     """
+    count=0
+    for k in range(n-2+1):
+        if is_prime(k+2)==True:
+            count=count+1
+    return count
+
+#    """
+#    What comes in:  An integer n >= 2.
+#    What goes out:
+#      -- Returns the number of integers from 2 to n, inclusive,
+#         that are prime.
+#    Side effects:   None.
+#    Examples:
+#      -- If n is 13, this function returns 6,
+#           since there are 6 primes -- namely, 2, 3, 5, 7, 11, and 13 --
+#           between 2 and 13.
+#      -- If n is 2, this function returns 1,
+#           since there is one prime (namely, 2) between 2 and 2.
+#      -- If n is 200, the correct answer is 46,
+#           since there are 46 primes between 2 and 200.
+#     """
     # -------------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ###########################################################################
@@ -307,6 +317,11 @@ def run_test_problem0c():
 
 
 def problem0c(circle, n, window):
+    circle.attach_to(window)
+    for k in range(n):
+        circle=rg.Circle(rg.Point(circle.center.x+2*circle.radius,circle.center.y),circle.radius)
+        circle.attach_to(window)
+        window.render(0.5)
     """
     See   problem0c_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
@@ -330,7 +345,7 @@ def problem0c(circle, n, window):
       :type window: rg.RoseWindow
     """
     # -------------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ###########################################################################
